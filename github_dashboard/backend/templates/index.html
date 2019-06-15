@@ -15,6 +15,11 @@
 
 {% if data %}
   {% for repo in data %}
-    <li><a href="{{ repo.html_url }}">{{ repo.full_name }}</a></li>
+    {% if repo.contributors_count %}
+      <li><a href="{{ repo.html_url }}">{{ repo.full_name }}</a> - forks: {{repo.forks_count }}, stars: {{ repo.stargazers_count }}, contributors: {{ repo.contributors_count}}</li>
+    {% else %}
+      <li><a href="{{ repo.html_url }}">{{ repo.full_name }}</a> - forks: {{repo.forks_count }}, stars: {{ repo.stargazers_count }}, contributors: {{ repo.contributors_count}}</li>
+    {% endif %}
+
   {% endfor %}
 {% endif %}
