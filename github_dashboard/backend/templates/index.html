@@ -1,0 +1,20 @@
+<form action="/repos/" method="GET">
+      <label for="organization">Search Github Repository</label>
+      <input id="organization" type="text" name="organization" value="">
+      <select name="sort_by" id="sort_by">
+        <option value="forks_count">Number of forks</option>
+        <option value="stargazers_count">Number of stars</option>
+        <option value="contributors_count">Number of contributors</option>
+      </select>
+      <input type="submit" value="OK">
+</form>
+
+{% if error %}
+  {{ error }}
+{% endif %}
+
+{% if data %}
+  {% for repo in data %}
+    <li><a href="{{ repo.html_url }}">{{ repo.full_name }}</a></li>
+  {% endfor %}
+{% endif %}
