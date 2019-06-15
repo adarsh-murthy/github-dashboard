@@ -9,7 +9,7 @@ from .utils import get_repositories, update_repos_with_contributor_count
 
 
 def get_index(request):
-    return render(request, "index.html", {"organization": ""})
+    return render(request, "base.html")
 
 
 def get_repositories_for_org(request):
@@ -22,7 +22,9 @@ def get_repositories_for_org(request):
 
     if not organization:
         return render(
-            request, "index.html", {"error": "No organization provided"}
+            request,
+            "index.html",
+            {"error": "No organization provided", "organization": ""},
         )
 
     # Make sure organization is of type string.
@@ -68,7 +70,13 @@ def get_repositories_for_org(request):
             content, key=lambda repo: repo["contributors_count"], reverse=True
         )
     return render(
-        request,
-        "index.html",
-        {"data": content, "organization": organization},
+        request, "index.html", {"data": content, "organization": organization}
     )
+
+
+def github_api_key(request):
+    """Stores github API token in cache."""
+    if request.method == "post":
+        api_token = request.POST.get("api_key")
+        cache.set("api_key", api_token)
+    return render(request, "add_api_key.html")

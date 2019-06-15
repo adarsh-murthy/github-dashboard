@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from backend.views import get_index, get_repositories_for_org
+from backend.views import get_repositories_for_org, get_index, github_api_key
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("index/", get_index, name="index"),
+    path("", get_index, name="index"),
     path("repos/", get_repositories_for_org, name="repos"),
+    path("api_key/", github_api_key, name="api_key"),
 ]

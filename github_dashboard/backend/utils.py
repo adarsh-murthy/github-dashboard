@@ -2,14 +2,20 @@
 import os
 import requests
 
+from django.core.cache import cache
+
 GITHUB_API = "https://api.github.com"
-GITHUB_API_KEY = os.environ.get("GITHUB_API_KEY")
-GITHUB_API_KEY = "6fd20240b18dad56caa1fa7a35ce91a8ea2a0d8d"
+def get_github_api_key():
+    """Get the github API key from the cache."""
+    return cache.get('api_key', None)
+
+
+github_api_key = get_github_api_key()
 
 headers = {}
-if GITHUB_API_KEY:
+if github_api_key:
     # Headers to make calls to github
-    headers = {"Authorization": "Token {}".format(GITHUB_API_KEY)}
+    headers = {"Authorization": "Token {}".format(github_api_key)}
 
 
 def get_repositories(organization):
