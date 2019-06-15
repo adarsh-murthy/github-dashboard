@@ -9,7 +9,7 @@ from .utils import get_repositories, update_repos_with_contributor_count
 
 
 def get_index(request):
-    return render(request, "index.html")
+    return render(request, "index.html", {"organization": ""})
 
 
 def get_repositories_for_org(request):
@@ -67,4 +67,8 @@ def get_repositories_for_org(request):
         content = sorted(
             content, key=lambda repo: repo["contributors_count"], reverse=True
         )
-    return render(request, "index.html", {"data": content})
+    return render(
+        request,
+        "index.html",
+        {"data": content, "organization": organization},
+    )
