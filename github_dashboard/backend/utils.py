@@ -4,6 +4,7 @@ import requests
 
 GITHUB_API = "https://api.github.com"
 GITHUB_API_KEY = os.environ.get("GITHUB_API_KEY")
+GITHUB_API_KEY = "6fd20240b18dad56caa1fa7a35ce91a8ea2a0d8d"
 
 headers = {}
 if GITHUB_API_KEY:

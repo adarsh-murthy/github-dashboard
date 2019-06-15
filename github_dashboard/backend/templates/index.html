@@ -1,25 +1,34 @@
-<form action="/repos/" method="GET">
+{% extends 'base.html' %}
+
+{% block content %}
+  <form action="/repos/" method="GET">
+    <div class="form-group">
       <label for="organization">Search Github Repository</label>
-      <input id="organization" type="text" name="organization" value="">
-      <select name="sort_by" id="sort_by">
-        <option value="forks_count">Number of forks</option>
-        <option value="stargazers_count">Number of stars</option>
-        <option value="contributors_count">Number of contributors</option>
-      </select>
-      <input type="submit" value="OK">
-</form>
+      <input id="organization" type="text" name="organization" class="form-control">
+    </div>
+    <select name="sort_by" id="sort_by" class="form-control">
+      <option value="forks_count">Number of forks</option>
+      <option value="stargazers_count">Number of stars</option>
+      <option value="contributors_count">Number of contributors</option>
+    </select>
+    <div class="form-group">
+      <input type="submit" value="OK" class="btn btn-primary">
+    </div>
+  </form>
 
-{% if error %}
-  {{ error }}
-{% endif %}
+  {% if error %}
+    {{ error }}
+  {% endif %}
 
-{% if data %}
-  {% for repo in data %}
-    {% if repo.contributors_count %}
-      <li><a href="{{ repo.html_url }}">{{ repo.full_name }}</a> - forks: {{repo.forks_count }}, stars: {{ repo.stargazers_count }}, contributors: {{ repo.contributors_count}}</li>
-    {% else %}
-      <li><a href="{{ repo.html_url }}">{{ repo.full_name }}</a> - forks: {{repo.forks_count }}, stars: {{ repo.stargazers_count }}, contributors: {{ repo.contributors_count}}</li>
-    {% endif %}
+  {% if data %}
+    {% for repo in data %}
+      {% if repo.contributors_count %}
+        <li><a href="{{ repo.html_url }}">{{ repo.full_name }}</a> - forks: {{repo.forks_count }}, stars: {{ repo.stargazers_count }}, contributors: {{ repo.contributors_count}}</li>
+      {% else %}
+        <li><a href="{{ repo.html_url }}">{{ repo.full_name }}</a> - forks: {{repo.forks_count }}, stars: {{ repo.stargazers_count }}, contributors: {{ repo.contributors_count}}</li>
+      {% endif %}
 
-  {% endfor %}
-{% endif %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}
+
