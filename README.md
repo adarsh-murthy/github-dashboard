@@ -57,3 +57,10 @@ You have a single form to Input the organization and select a filter.
 If successful, you will see a list of repositories for the specified
 organization hyperlinked to the repository. If not, you see the respective
 error.
+
+### Assumptions
+
+- Cache is not really cleared at any point so assumes that repositories don't
+  change.
+- If request to get the contributors fails for any reason, that number is shown
+  as zero.
