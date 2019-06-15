@@ -5,6 +5,8 @@
 Search for the repositories for any organization. You have the option to sort
 them by number of forks, number of contributors or number of stars.
 
+You can optionally add your personal github API key that you generated.
+
 ## Technologies
 
 - Python 3 for language.
@@ -23,10 +25,6 @@ environment for this project.
 Install all the dependencies
 
 `pip install -r requirements.txt`
-
-Set a new environment variable to use your github api token
-
-`export GITHUB_API_TOKEN=<token>`
 
 Run the server locally
 ```
