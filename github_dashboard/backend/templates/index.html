@@ -22,11 +22,18 @@
 
   {% if data %}
     {% for repo in data %}
-      {% if repo.contributors_count %}
-        <li><a href="{{ repo.html_url }}">{{ repo.full_name }}</a> - forks: {{repo.forks_count }}, stars: {{ repo.stargazers_count }}, contributors: {{ repo.contributors_count}}</li>
-      {% else %}
-        <li><a href="{{ repo.html_url }}">{{ repo.full_name }}</a> - forks: {{repo.forks_count }}, stars: {{ repo.stargazers_count }}, contributors: {{ repo.contributors_count}}</li>
-      {% endif %}
+      <div class="card">
+        <div class="card-header">
+          <a href="{{ repo.full_name }}" >{{ repo.full_name }}</a>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Forks: {{ repo.forks_count}}</li>
+              <li class="list-group-item">Stars: {{ repo.stargazers_count }}</li>
+              <li class="list-group-item">Contributors: {{ repo.contributors_count }}</li>
+            </ul>
+        </div>
+      </div>
 
     {% endfor %}
   {% endif %}
