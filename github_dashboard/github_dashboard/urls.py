@@ -19,7 +19,7 @@ from django.urls import path
 from backend.views import get_index, get_repositories_for_org
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('index/', get_index, name='index'),
-    path('repos/', get_repositories_for_org, name='repos'),
+    path("admin/", admin.site.urls),
+    path("index/", get_index, name="index"),
+    path("repos/", get_repositories_for_org, name="repos"),
 ]

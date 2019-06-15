@@ -3,7 +3,7 @@ import os
 import requests
 
 GITHUB_API = "https://api.github.com"
-GITHUB_API_KEY = os.environ.get('GITHUB_API_KEY')
+GITHUB_API_KEY = os.environ.get("GITHUB_API_KEY")
 
 # Headers to make calls to github
 HEADERS = {"Authorization": "Token {}".format(GITHUB_API_KEY)}
@@ -35,5 +35,5 @@ def update_repo_with_contributor_count(repo):
     """Given a repository, update it to have the number of contributors."""
     contributors_url = repo.get("contributors_url")
     response = requests.get(contributors_url, headers=HEADERS)
-    repo['contributors_count'] = len(response.json())
+    repo["contributors_count"] = len(response.json())
     return repo
