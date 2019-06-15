@@ -37,5 +37,8 @@ def update_repo_with_contributor_count(repo):
     """Given a repository, update it to have the number of contributors."""
     contributors_url = repo.get("contributors_url")
     response = requests.get(contributors_url, headers=headers)
-    repo["contributors_count"] = len(response.json())
+    if response.status_code == 200:
+        repo["contributors_count"] = len(response.json())
+    else:
+        repo["contributors_count"] = 0
     return repo

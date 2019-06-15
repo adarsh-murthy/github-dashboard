@@ -49,10 +49,14 @@ def get_repositories_for_org(request):
         cache.set(organization, content)
     # sort the repositories specified by user.
     if sort_by == "forks_count":
-        content = sorted(content, key=lambda repo: repo["forks_count"])
+        content = sorted(
+            content, key=lambda repo: repo["forks_count"], reverse=True
+        )
 
     if sort_by == "stargazers_count":
-        content = sorted(content, key=lambda repo: repo["stargazers_count"])
+        content = sorted(
+            content, key=lambda repo: repo["stargazers_count"], reverse=True
+        )
 
     # Contributor count is not on the repositories. We need to do additional
     # processing here.
@@ -60,5 +64,7 @@ def get_repositories_for_org(request):
         if content[0].get("contributors_count", None) is None:
             content = update_repos_with_contributor_count(content)
             cache.set(organization, content)
-        content = sorted(content, key=lambda repo: repo["contributors_count"])
+        content = sorted(
+            content, key=lambda repo: repo["contributors_count"], reverse=True
+        )
     return render(request, "index.html", {"data": content})
