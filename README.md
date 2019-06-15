@@ -7,13 +7,15 @@ them by number of forks, number of contributors or number of stars.
 
 ## Technologies
 
-Use Django framework to build out the whole application.
-Use python requests library to make http requests.
+- Python 3 for language.
+- Django framework to build out the whole application.
+- python requests library to make http requests.
 
 ## Set up
 
 Clone this repository.
-`git clone <git_clone_link>`
+
+`git clone git@github.com:adarsh-murthy/github-dashboard.git`
 
 If you use virtual environment (highly recommend), then create a new
 environment for this project.
@@ -48,4 +50,10 @@ only if the filter is selected (also cached).
 In this project, local default cache is used but you can switch it out for any
 caching backend.
 
+### Frontend
+
 Single template is rendered with different context. The UI is kept simple.
+You have a single form to Input the organization and select a filter.
+If successful, you will see a list of repositories for the specified
+organization hyperlinked to the repository. If not, you see the respective
+error.
